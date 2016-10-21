@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xsi:schemaLocation="
+  	http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+  	http://camel.apache.org/schema/spring 
+    http://camel.apache.org/schema/spring/camel-spring.xsd
+    http://camel.apache.org/schema/cxf
+    http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+
+	
+	<!-- Camel -->
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+  <route id="queueConsumer">
+    <from uri="timer://foo?repeatCount=10"/>
+    <setBody>
+      <constant>halooo</constant>
+    </setBody>
+    <log message="sending request ${body}"/>
+    <to uri="activemq:queue:testQueue"/>
+  </route>
+</camelContext>
+
+	
+	
+	
+</beans>
